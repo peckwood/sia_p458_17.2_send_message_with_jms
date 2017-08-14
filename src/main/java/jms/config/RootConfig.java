@@ -13,12 +13,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
-import org.springframework.jms.support.converter.MessageType;
 
 import jms.AlertService;
 import jms.AlertServiceImpl;
-import jms.domain.User;
-
+//I have no idea how to configure a jms listener this way
 @Configuration
 public class RootConfig {
 	private final String DESTINATIONAL_NAME_QUEUE = "user.alert.queue"; 
@@ -49,7 +47,7 @@ public class RootConfig {
 		//return new MappingJackson2MessageConverter();
 		MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
 		//This cannot be skipped
-		converter.setTypeIdPropertyName("User");
+		converter.setTypeIdPropertyName("jms.domain.User");
         return converter;
 	}
 	
@@ -65,4 +63,5 @@ public class RootConfig {
 	public AlertService alertService(){
 		return new AlertServiceImpl();
 	}
+	
 }

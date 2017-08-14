@@ -13,6 +13,9 @@ import jms.domain.User;
 public class AlertServiceImpl implements AlertService {
 	@Autowired
 	private JmsOperations jmsTemplate;
+	
+	public AlertServiceImpl() {
+	}
 
 	@Override
 	public void sendUserAlert(final User user) {
@@ -38,6 +41,10 @@ public class AlertServiceImpl implements AlertService {
 	@Override
 	public User receiveUserAlert() {
 		return (User) jmsTemplate.receiveAndConvert();
+	}
+
+	public void setJmsTemplate(JmsOperations jmsTemplate) {
+		this.jmsTemplate = jmsTemplate;
 	}
 
 }
